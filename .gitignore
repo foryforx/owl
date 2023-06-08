@@ -1,0 +1,20 @@
+.idea
+.coverage
+.vscode
+# server
+owl-auth/bin
+owl-auth/tmp/*
+
+#client
+owl-client/.next
+owl-client/node_modules
+owl-client/out
+owl-client/.env.local
+
+
+# Ignore OS generated files
+.DS_Store
+ehthumbs.db
+Thumbs.db
+
+

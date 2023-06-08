@@ -1,0 +1,4 @@
+tmp/*
+NOREADME.md
+README.md
+sqlc.yaml

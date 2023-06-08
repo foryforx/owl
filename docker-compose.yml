@@ -1,0 +1,57 @@
+version: "3.7"
+
+services:
+  owl-db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=owl
+      - POSTGRES_PASSWORD=owl
+    ports:
+      - 5432:5432
+    volumes:
+      - type: volume
+        source: owl-postgres-data
+        target: /var/lib/postgresql/dataowl
+    depends_on:
+      - owl-redis
+
+  owl-redis:
+    image: redis:6.2
+    ports:
+      - 6379:6379
+    volumes:
+      - owl-redis:/data
+
+  owl-migrations:
+    build:
+      context: ./owl-migrations
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./owl-migrations/.env
+    depends_on:
+      - owl-db
+
+  owl-auth:
+    build:
+      context: ./owl-auth
+      dockerfile: ./Dockerfile
+    volumes:
+      - type: bind
+        source: ./owl-auth
+        target: /opt/app-root
+    env_file:
+      - ./owl-auth/.env
+    ports:
+      - 2345:80
+    depends_on:
+      - owl-migrations
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  owl-postgres-data:
+  owl-redis:
+
+
+networks:
+  default:

@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "72dc8767-d60a-4ab2-bf23-bcfbcab12c17",
+		"name": "owl",
+		"description": "This collection will explain everything about Owl API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "451990"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "Get Account",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ACC1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2345/accounts/6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts",
+								"6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ACC2\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2345/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2345/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2345/accounts/60ff2542-f96c-4c6b-bbb0-e356cd194385",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts",
+								"60ff2542-f96c-4c6b-bbb0-e356cd194385"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ACC2-modified\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2345/accounts/4d271efd-32f6-45f1-9966-a2a3b4d008e3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts",
+								"4d271efd-32f6-45f1-9966-a2a3b4d008e3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "RegisterUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"fory\",\n    \"lastName\": \"forx\",\n    \"email\": \"foryforx@gmail.com\",\n    \"password\": \"a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2345/accounts/6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts",
+								"6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"customer_id\",jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "mypass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "oshankfriends",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"foryforx@gmail.com\",\n    \"password\": \"a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2345/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users for account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2345/accounts/6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts",
+								"6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User from account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2345/accounts/6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8/users/7a500c11-c0ef-44e0-8657-98913b1b48b1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts",
+								"6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8",
+								"users",
+								"7a500c11-c0ef-44e0-8657-98913b1b48b1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User in account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"fory-m\",\n    \"lastName\": \"forx-m\",\n    \"email\": \"foryforx@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2345/accounts/6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8/users/7a500c11-c0ef-44e0-8657-98913b1b48b1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts",
+								"6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8",
+								"users",
+								"7a500c11-c0ef-44e0-8657-98913b1b48b1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update pwd for user in account",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"fory-m\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2345/accounts/6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8/users/7a500c11-c0ef-44e0-8657-98913b1b48b1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts",
+								"6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8",
+								"users",
+								"7a500c11-c0ef-44e0-8657-98913b1b48b1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user in account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2345/accounts/6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8/users/7a500c11-c0ef-44e0-8657-98913b1b48b1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"accounts",
+								"6f532e2d-a3b3-4f83-82c7-9fe0f6c93fa8",
+								"users",
+								"7a500c11-c0ef-44e0-8657-98913b1b48b1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2345/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2345",
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "customer_id",
+			"value": "\"\"",
+			"type": "string"
+		},
+		{
+			"key": "address_id",
+			"value": "\"\"",
+			"type": "string"
+		},
+		{
+			"key": "card_id",
+			"value": "\"\"",
+			"type": "string"
+		}
+	]
+}
