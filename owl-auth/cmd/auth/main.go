@@ -109,7 +109,8 @@ func startHTTPServer(ctx context.Context, addr string, handler http.Handler) err
 		defer cancel()
 
 		if err := srv.Shutdown(shutCtx); err != nil {
-			return fmt.Errorf("http server shutdonwn: %w", err)
+			srv.Close()
+			return fmt.Errorf("http server shutdonwn: %w. so we closed", err)
 		}
 		return nil
 	}
